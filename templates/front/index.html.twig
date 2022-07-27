@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HomePage{% endblock %}
+
+{% block body %}
+<h1>HomePage</h1>
+
+<h2>Les 5 dernier Articles parus</h2>
+
+{% if articles %}
+<ul>
+{% for article in articles %}
+    <li>
+    <a href="{{ path('app_front_article', {'id': article.id}) }}">{{ article.title }}</a>
+    {% if article.writer %}
+    (auteur : {{ article.writer.user.email }})
+    {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+Il n'y à encore aucun article.
+{% endif %}
+{% endblock %}
+
+{% block body_javascripts %}
+<script>
+console.log('hello front index!');
+</script>
+{% endblock %}
